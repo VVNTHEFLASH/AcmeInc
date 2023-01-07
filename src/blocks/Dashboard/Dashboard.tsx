@@ -1,19 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useLocation, Routes, Route } from "react-router-dom";
 import DashboardWelcome from '../../components/Others/DashboardWelcome';
 import Employees from '../Employees/Employees';
 import DashboardHeader from './Header/DashboardHeader';
+import DashboardMain from './Main/DashboardMain';
+import { Sidebar } from "flowbite-react";
 
 
 const Dashboard = () => {
   const { state } = useLocation();
-  const { data } = state;
+  // const { data } = state;
   const navigate = useNavigate();
 
   const logoutHandler = () => {
     localStorage.setItem('login-status', JSON.stringify(false))
     navigate('/')
   }
+
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
   return (
     <>
     {/* <div className='flex flex-col-reverse h-max'>
@@ -31,9 +36,10 @@ const Dashboard = () => {
         </div>
       </div>
     </div> */}
-    <div id='DashboardContainer'>
-      <DashboardHeader />
+    <div id='DashboardContainer' className='h-[80vh]'>
+      <DashboardHeader isDrawerOpen={setIsDrawerOpen} />
       <hr />
+      <DashboardMain isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
     </div>
     </>
   )

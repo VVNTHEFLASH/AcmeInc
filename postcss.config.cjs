@@ -1,6 +1,6 @@
 module.exports = {
   plugins: [
     require('tailwindcss'),
-    require('node:assert')
+    require('node:assert'),
   ],
 }
