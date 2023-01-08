@@ -1,4 +1,5 @@
 import React, { Dispatch } from 'react'
+import SidebarButtons from './Buttons/SidebarButtons';
 import DashboardMainContent from './DashboardMainContent';
 import DrawerTail from './Drawer/DrawerTail';
 
@@ -7,6 +8,63 @@ interface Props {
     setIsDrawerOpen: Dispatch<React.SetStateAction<boolean>>,
     logoutHandler?: () => void
 }
+
+const SideBarButtonsData = {
+    Analytics: [
+        {
+            text: "Performance",
+            iconClass: "fa-solid fa-chart-simple",
+        },
+        {
+            text: "Hotjar",
+            iconClass: "fa-brands fa-hotjar",
+        }
+    ],
+    Support: [
+        {
+            text: "Tickets",
+            iconClass: "fa-solid fa-ticket",
+        },            
+        {
+            text: "Agents",
+            iconClass: "fa-solid fa-user",
+        },
+        {
+            text: "Customers",
+            iconClass: "fa-solid fa-user",
+        }
+    ],
+    Shop: [
+        {
+            text: "Products",
+            iconClass: "fa-solid fa-folder",
+        },
+        {
+            text: "Orders",
+            iconClass: "fa-solid fa-bell",
+        },
+        {
+            text: "Reports",
+            iconClass: "fa-solid fa-flag",
+        }
+    ],
+    Others: [
+        {
+            text: "Settings",
+            iconClass: "fa-solid fa-gear",
+        },
+        {
+            text: "Logout",
+            iconClass: "fa-solid fa-arrow-right-from-bracket",
+        }
+    ]
+}
+
+
+function alertNotImplented(text: string): void {
+    alert(text + " Not Implented Yet")
+}
+
 
 const DashboardMain = ({ isDrawerOpen, setIsDrawerOpen, logoutHandler}:Props) => {
 
@@ -19,40 +77,43 @@ const DashboardMain = ({ isDrawerOpen, setIsDrawerOpen, logoutHandler}:Props) =>
                         <p className=''>Connnect New Account</p>
                     </div>
                     <ul>
-                        <li className='mt-4'><i className="fa-solid fa-house text-slate-500"></i> Dashboard</li>
+                        <li className='mt-10'>
+                            <SidebarButtons iconClass={'fa-solid fa-house text-slate-500'} extraStyle={'bg-slate-200'} text={'Dashboard'} />
+                        </li>
                     </ul>
                 </div>
                 <div className='mt-4'>
                     <p className='font-bold uppercase text-slate-300'>Analytics</p>
                     <ul title='Analytics' className='mt-4'>
-                        <li className="mt-4"><i className="fa-solid fa-chart-simple"></i> Performance</li>
-                        <li className="mt-4"><i className="fa-brands fa-hotjar"></i> Hotjar (New)</li>
+                        {SideBarButtonsData.Analytics.map(({iconClass, text}) => <SidebarButtons iconClass={iconClass} text={text} onClick={() => {
+                            alertNotImplented(text)
+                        }} />)}
                     </ul>
                 </div>
                 <div className='mt-4'>
                     <h4 className='font-bold uppercase text-slate-300'>Support</h4>
                     <ul className='mt-4'>
-                        <li className="mt-4"><i className="fa-solid fa-ticket"></i> Tickets</li>
-                        <li className="mt-4"><i className="fa-solid fa-user"></i> Agents</li>
-                        <li className="mt-4 relative right-2">
-                            <i className="fa-solid fa-user relative left-2 text-gray-500"/>
-                            <i className="fa-solid fa-user"/> Customers
-                        </li>
+                        {SideBarButtonsData.Support.map(({iconClass, text}) => <SidebarButtons iconClass={iconClass} text={text} onClick={() => {
+                            alertNotImplented(text)
+                        }} />)}
                     </ul>
                 </div>
                 <div className='mt-4'>
                     <h4 className='font-bold uppercase text-slate-300'>Shop</h4>
                     <ul className='mt-4'>
-                        <li className="mt-4"><i className="fa-solid fa-folder"></i> Products</li>
-                        <li className="mt-4"><i className="fa-solid fa-bell"></i> Orders</li>
-                        <li className="mt-4"><i className="fa-solid fa-flag"></i> Reports</li>
+                        {SideBarButtonsData.Shop.map(({iconClass, text}) => <SidebarButtons iconClass={iconClass} text={text} onClick={() => {
+                            alertNotImplented(text)
+                        }} />)}
                     </ul>
                 </div>
             </div>
             <div>
                 <ul className='mt-4'>
-                    <li className="mt-4">Settings</li>
-                    <li className="cursor-pointer mt-4" onClick={logoutHandler}>Logout</li>
+                    {/* <li className="mt-4">Settings</li>
+                    <li className="cursor-pointer mt-4" onClick={logoutHandler}>Logout</li> */}
+                    {SideBarButtonsData.Others.map(({iconClass, text}) => <SidebarButtons iconClass={iconClass} text={text} onClick={
+                        text === "Logout" ? logoutHandler : () => alertNotImplented(text)
+                    } />)}
                 </ul>
             </div>
         </div>
