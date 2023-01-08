@@ -9,7 +9,7 @@ type Props = {}
 
 const DashboardMainContent = ({}: Props) => {
   return (
-    <div className='h-[93vh] w-full'>
+    <div className='h-[93vh] w-full bg-slate-100'>
         <div className='mx-16 py-6'>
             <p><strong>Hey Mariana - </strong>here's what's happening with your store today</p>
         </div>

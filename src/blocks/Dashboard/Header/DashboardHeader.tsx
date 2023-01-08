@@ -36,7 +36,9 @@ const DashboardHeader = ({ isDrawerOpen }: Props) => {
             <div className='flex justify-end items-center'>
                     <i className="fa-regular fa-envelope mx-3"></i>
                     <i className="fa-regular fa-bell mx-3"></i>
-                    <div onClick={() => isDrawerOpen(true)}>
+                    <div onClick={() => {
+                        // isDrawerOpen(true)
+                    }}>
                         <img src={ProfileImage} alt="profileImage" className='h-8 w-8 mr-10' />
                     </div>
             </div>
