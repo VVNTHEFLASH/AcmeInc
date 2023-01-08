@@ -39,7 +39,7 @@ const Dashboard = () => {
     <div id='DashboardContainer' className='h-[80vh]'>
       <DashboardHeader isDrawerOpen={setIsDrawerOpen} />
       <hr />
-      <DashboardMain isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />
+      <DashboardMain isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} logoutHandler={logoutHandler} />
     </div>
     </>
   )

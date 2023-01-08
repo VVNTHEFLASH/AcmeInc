@@ -10,11 +10,14 @@
     "tailwind-build": "postcss src/index.css -o public/build/tailwind.css"
   },
   "dependencies": {
+    "chart.js": "^4.1.2",
     "copy-to-clipboard": "^3.3.3",
+    "faker": "^5.5.3",
     "flowbite": "^1.6.0",
     "flowbite-react": "^0.3.7",
     "postcss-cli": "^10.1.0",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.1.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.6.1",
     "tw-elements": "^1.0.0-alpha13"

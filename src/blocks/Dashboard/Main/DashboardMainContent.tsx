@@ -1,5 +1,9 @@
 import React from 'react'
+import RecentCustomers from './Cards/RecentCustomers';
 import RectCard from './Cards/RectCard';
+import SalesReport from './Cards/SalesReport';
+import TrafficSources from './Cards/TrafficSources';
+import Transactions from './Cards/Transactions';
 
 type Props = {}
 
@@ -15,12 +19,20 @@ const DashboardMainContent = ({}: Props) => {
             <RectCard title={'Total Orders'} price={'84,382'} priceDiffPercent={36} diffStatus={true}/>
             <RectCard title={'Total Customers'} price={'33,493'} priceDiffPercent={36} diffStatus={true}/>
         </div>
-        <div className='grid grid-cols-70/30 mx-16'>
-            <div className=''>
-                Sales Report
+        <div className='grid grid-cols-70/30 mx-16 my-6 gap-6'>
+            <div className='bg-white h-[30vh] rounded-lg'>
+                <SalesReport />
             </div>
-            <div>
-                Traffic Sources
+            <div className='bg-white h-[30vh] rounded-lg'>
+                <TrafficSources />
+            </div>
+        </div>
+        <div className='grid grid-cols-70/30 mx-16 my-6 gap-6'>
+            <div className='bg-white h-[36vh] rounded-lg'>
+                <Transactions />
+            </div>
+            <div className='bg-white h-[36vh] rounded-lg'>
+                <RecentCustomers />
             </div>
         </div>
     </div>

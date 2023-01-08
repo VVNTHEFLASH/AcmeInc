@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import LoginForm from './Login/LoginForm';
 import copy from 'copy-to-clipboard';
 
 const HomePage = () => {
 
   const [showLoginForm, setShowLoginForm] = useState(false)
+  const [trigger, setTrigger] = useState(false)
 
   const showLoginFormHandler = () =>{
       setShowLoginForm(true)
@@ -16,10 +17,20 @@ const HomePage = () => {
 
   const copyUsername = () => {
     copy("jissetts")
+    setTrigger(!trigger)
   }
   const copyPassword = () => {
     copy("ePawWgrnZR8L")
+    setTrigger(!trigger)
   }
+
+  useEffect(() => {
+    navigator.clipboard.readText()
+    .then((text) => {
+      console.log(text);
+    })
+  }, [trigger])
+  
 
   return (
     <>

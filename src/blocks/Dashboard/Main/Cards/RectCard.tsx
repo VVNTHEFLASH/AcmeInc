@@ -9,7 +9,7 @@ interface Props {
 
 const RectCard = ({ title, price, priceDiffPercent, diffStatus}: Props) => {
 
-    const diffStatusCheck = (number: number) => {
+    const diffStatusCheck = () => {
         if(diffStatus) {
             return "text-green-600"
         }
@@ -26,7 +26,7 @@ const RectCard = ({ title, price, priceDiffPercent, diffStatus}: Props) => {
                 <div>
                     <p>${price}</p>
                 </div>
-                <div className={diffStatusCheck(priceDiffPercent)}>{priceDiffPercent}</div>
+                <div className={diffStatusCheck()}>{priceDiffPercent}</div>
             </div>
         </div>
     )
