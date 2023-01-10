@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation, Routes, Route } from "react-router-dom";
 import DashboardWelcome from '../../components/Others/DashboardWelcome';
 import Employees from '../Employees/Employees';
 import DashboardHeader from './Header/DashboardHeader';
 import DashboardMain from './Main/DashboardMain';
 import { Sidebar } from "flowbite-react";
-
+import { BaseURL } from "../../../secret"
 
 const Dashboard = () => {
   const { state } = useLocation();

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import SalesReportButton from '../Buttons/SalesReportButton';
 // @ts-ignore
@@ -14,6 +14,7 @@ import {
     Legend,
     Filler
 } from 'chart.js';
+import { fetchSalesReport } from '../../../../api_calls/GET_REQUEST';
 
 ChartJS.register(
     CategoryScale,
@@ -70,7 +71,29 @@ const LineChartData = {
     data: LineChartData,
   }
 
-const SalesReport = () => {
+interface Props {
+
+}
+
+const initialGSD = {
+    todaySales: 0,
+    totalSales: 0,
+    totalOrders: 0,
+    totalCustomers: 0
+}
+const SalesReport = ({ }: Props) => {
+    
+    const [SalesReportData, setSalesReportData] = useState([])
+
+    const [gridSalesData, setGSD] = useState(initialGSD)
+
+    useEffect(() => {
+        fetchSalesReport().then(result => {
+            setSalesReportData(result)
+        }).catch((err) => {
+            alert(err.message)
+        })
+    },[])
 
     const [filteredChartData, setFilteredChartData] = useState(initialChartData);
 
@@ -167,9 +190,9 @@ const SalesReport = () => {
                 </button>
             </div> 
         </div>
-        <div className='flex justify-center mx-8'>
+        <div className='flex justify-center mx-8 my-8'>
             {/* Chart Sales */}
-            <Line data={filteredChartData.data} options={options} width={4000} height={650} />
+            <Line data={filteredChartData.data} options={options} width={2500} height={650} />
         </div>
     </>
   )

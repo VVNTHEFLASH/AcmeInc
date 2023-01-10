@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { fetchSalesReport } from '../../../api_calls/GET_REQUEST';
 import RecentCustomers from './Cards/RecentCustomers';
 import RectCard from './Cards/RectCard';
 import SalesReport from './Cards/SalesReport';
@@ -8,6 +9,8 @@ import Transactions from './Cards/Transactions';
 type Props = {}
 
 const DashboardMainContent = ({}: Props) => {
+
+
   return (
     <div className='h-full w-full bg-slate-100 overflow-clip'>
         <div className='mx-16 py-6'>

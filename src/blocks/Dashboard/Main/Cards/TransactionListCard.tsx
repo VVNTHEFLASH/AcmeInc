@@ -19,34 +19,34 @@ interface Props {
 
 
 const TransactionListCard = ({data, index}: Props) => {
-    console.log(data, "TLC")
+
 
     const renderByStatus = (status: string) => {
         if(status === "Completed"){
-            return ["mx-2", " text-green-500 text-[8px]", "text-green-800 bg-green-100"]
+            return ["mx-2", " text-green-500 text-[8px]", "text-[#3E7B54] bg-[#e1fbeb]"]
         }
         else if(status === "Pending"){
-            return ["mx-2"," text-[8px] text-yellow-300", "text-yellow-800 bg-yellow-100"]
+            return ["mx-2"," text-[8px] text-yellow-300", "text-yellow-800 bg-[#fef9ce]"]
         }
         else{
-            return ["mx-2", " text-[8px] text-red-600","text-red-900 bg-red-100"]
+            return ["mx-2", " text-[8px] text-red-600","text-red-900 bg-[#FFE8E8]"]
         }
     }
   return (
     <>
         <div className='grid grid-cols-5x5column text-[14px]'>
-            <div className='flex flex-col justify-center'>
+            <div className='flex flex-col justify-center font-[600]'>
                 <div 
                 className={renderByStatus(data.status)[2]+ " flex w-[120px] items-center mx-auto rounded-full p-1"}
                 >
                     <i className={"fa-solid fa-circle ml-2"+ renderByStatus(data.status)[1]}></i>
-                    <button className={renderByStatus(data.status)[0]+ " font-[600]"}>{data.status}</button>
+                    <button className={renderByStatus(data.status)[0]+ " "}>{data.status}</button>
                 </div>
             </div>
-            <div className='p-2 flex flex-col justify-center items-center'>
-                <div className=''>
+            <div className=''>
+                <div className='p-2'>
                 <h5 className='font-bold mb-2 mt-2'>{`${data.details.payment_type} ${data.details.payment_no}`}</h5>
-                <p className='text-slate-500 mb-2'>{data.details.payment_type.includes("card") ? "Card Payment" : "Bank payment"}</p>
+                <p className='text-[#A3A3A9] mb-2'>{data.details.payment_type.includes("card") ? "Card Payment" : "Bank payment"}</p>
                 </div>
             </div>
             <div className='flex flex-col items-center justify-center'>

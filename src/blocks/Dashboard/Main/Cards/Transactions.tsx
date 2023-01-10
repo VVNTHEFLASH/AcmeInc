@@ -58,7 +58,7 @@ const TransactionsData = [
 
 const Transactions = () => {
   return (
-    <div className='h-fit'>
+    <div className='h-fit font-source-sans-pro'>
       <div className='flex justify-between pt-8 pl-8 pr-8'>
         <div className='flex justify-start items-center font-bold'>
           <p>Transactions</p>
@@ -69,7 +69,7 @@ const Transactions = () => {
         </div>
       </div>
       <div className='pl-8 pt-2'>
-        <p className='text-slate-300'>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p className='text-[#A3A3A9]'>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
       </div>
       <div className='overflow-y-auto scrollbar-thin scrollbar-thumb-blue-100 scrollbar-track-gray-100 scrollbar-thumb-rounded-full'>
         {/* List */}

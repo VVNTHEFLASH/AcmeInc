@@ -19,6 +19,10 @@ module.exports = {
         '85vh': "85vh",
         '90vh': "90vh",
         '95vh': "95vh",
+      },
+      fontFamily: {
+        "source-sans-pro": ['Source Sans Pro', 'sans-serif'],
+        'poppins': ['Poppins', 'sans-serif']
       }
     },
   },

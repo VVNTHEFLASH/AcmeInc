@@ -45,8 +45,8 @@ const TrafficSources = () => {
       setFilteredData(temp)
   }, [])
   return (
-    <div>
-      <div className='flex justify-between mx-4 mt-2'>
+    <div className='flex flex-col'>
+      <div className='flex justify-between mx-4 mt-6'>
         <div className='font-bold'>
           <p>Traffic Sources</p>
         </div>
@@ -54,7 +54,7 @@ const TrafficSources = () => {
           <p>Last 7 Days ^</p>
         </div>
       </div>
-      <div className='mx-4'>
+      <div className='mx-4 flex flex-col justify-center'>
         {filteredData.map(({title, total, width}) => <ProgressBar Title={title} Total={total} width={width} />)}
       </div>
     </div>

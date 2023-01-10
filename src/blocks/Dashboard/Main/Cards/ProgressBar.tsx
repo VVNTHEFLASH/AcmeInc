@@ -7,7 +7,7 @@ interface Props {
 }
 const ProgressBar = ({Title, Total, width}: Props) => {
   return (
-    <div className='text-sm mt-2'>
+    <div className='text-sm mt-5'>
         <div className='flex justify-between mb-2'>
             <p>{Title}</p>
             <p>{Total}</p>
