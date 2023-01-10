@@ -72,7 +72,7 @@ const DashboardMain = ({ isDrawerOpen, setIsDrawerOpen, logoutHandler}:Props) =>
         <div className='flex flex-col justify-between h-[88vh] cursor-pointer bg-slate-100 text-slate-600 font-sans font-bold'>
             <div className='flex flex-col h-96 justify-evenly'>
                 <div className='mt-16'>
-                    <div className='flex justify-around items-center w-[280px] hover:opacity-[0.8] text-white bg-indigo-600 p-3 rounded-lg mt-20'>
+                    <div className='flex justify-around items-center w-[220px] hover:opacity-[0.8] text-white bg-indigo-600 p-3 rounded-lg mt-20'>
                         <i className="fa-solid fa-plus"/>
                         <p className=''>Connnect New Account</p>
                     </div>

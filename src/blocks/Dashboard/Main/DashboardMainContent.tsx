@@ -9,7 +9,7 @@ type Props = {}
 
 const DashboardMainContent = ({}: Props) => {
   return (
-    <div className='h-[93vh] w-full bg-slate-100'>
+    <div className='h-full w-full bg-slate-100 overflow-clip'>
         <div className='mx-16 py-6'>
             <p><strong>Hey Mariana - </strong>here's what's happening with your store today</p>
         </div>
@@ -20,18 +20,18 @@ const DashboardMainContent = ({}: Props) => {
             <RectCard title={'Total Customers'} price={'33,493'} priceDiffPercent={36} diffStatus={true}/>
         </div>
         <div className='grid grid-cols-70/30 mx-16 my-6 gap-6'>
-            <div className='bg-white h-[30vh] rounded-lg'>
+            <div className='bg-white h-full rounded-lg'>
                 <SalesReport />
             </div>
-            <div className='bg-white h-[30vh] rounded-lg'>
+            <div className='bg-white h-full rounded-lg'>
                 <TrafficSources />
             </div>
         </div>
         <div className='grid grid-cols-70/30 mx-16 my-6 gap-6'>
-            <div className='bg-white h-[36vh] rounded-lg'>
+            <div className='bg-white h-full rounded-lg'>
                 <Transactions />
             </div>
-            <div className='bg-white h-[36vh] rounded-lg'>
+            <div className='bg-white h-full rounded-lg'>
                 <RecentCustomers />
             </div>
         </div>

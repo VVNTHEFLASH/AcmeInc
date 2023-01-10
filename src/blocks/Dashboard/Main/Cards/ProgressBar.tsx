@@ -2,12 +2,12 @@ import React from 'react'
 
 interface Props {
     Title: string,
-    Total: string,
+    Total: number,
     width: string,
 }
 const ProgressBar = ({Title, Total, width}: Props) => {
   return (
-    <div>
+    <div className='text-sm mt-2'>
         <div className='flex justify-between mb-2'>
             <p>{Title}</p>
             <p>{Total}</p>

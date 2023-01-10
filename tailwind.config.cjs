@@ -11,7 +11,8 @@ module.exports = {
       gridTemplateColumns: {
         'header-262': "20.5% 59% 20.5%",
         '50/50': "50% 50%",
-        '70/30': "70% 30%"
+        '70/30': "70% 30%",
+        '5x5column': "25% 28% 20% 20% 5%"
       },
       height: {
         '80vh': "80vh",
@@ -23,6 +24,7 @@ module.exports = {
   },
   plugins: [
     require('tw-elements/dist/plugin'),
-    require('flowbite/plugin')
+    require('flowbite/plugin'),
+    require('tailwind-scrollbar')({ nocompatible: true }),
   ],
 }

@@ -7,9 +7,9 @@ interface Props {
 
 const SalesReportButton = ({ value, onClick }: Props) => {
   return (
-    <div>
+    <div className='rounded-md'>
         <button onClick={onClick} 
-        className={"hover:bg-gray-100 focus-within:bg-gray-100 h-10 w-28 mx-2"}
+        className={"hover:bg-gray-100 focus-within:bg-gray-100 h-10 w-24"}
         >{value}</button>
     </div>
   )

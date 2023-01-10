@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ProgressBar from './ProgressBar'
 
 const TrafficSources = () => {
@@ -7,27 +7,46 @@ const TrafficSources = () => {
     {
       title: "Direct",
       width: "85%",
-      total: "1,43,382"
+      total: 143382
     },
     {
       title: "Referral",
       width: "70%",
-      total: "87,974"
+      total: 87974
     },
     {
-      title: "Direct",
+      title: "Social Media",
       width: "45%",
-      total: "45,211"
+      total: 45211
     },
     {
-      title: "Direct",
+      title: "Twitter",
       width: "15%",
-      total: "21,893"
+      total: 21893
     }
   ]
+
+  const [filteredData, setFilteredData] = useState(data);
+
+
+
+  useEffect(() => {
+    const sumOfData = data.slice(0).reduce(
+      (accumulator, currentValue) => accumulator + (currentValue.total),
+      0
+    );
+
+    console.log(sumOfData)
+    
+      const temp = data.slice(0).map((item) => {
+        const total = `${Math.round((item.total/200000) * 100)}%`
+        return { ...item, width: total }
+      })
+      setFilteredData(temp)
+  }, [])
   return (
     <div>
-      <div className='flex justify-between m-6'>
+      <div className='flex justify-between mx-4 mt-2'>
         <div className='font-bold'>
           <p>Traffic Sources</p>
         </div>
@@ -35,8 +54,8 @@ const TrafficSources = () => {
           <p>Last 7 Days ^</p>
         </div>
       </div>
-      <div className='m-6'>
-        {data.map(({title, total, width}) => <ProgressBar Title={title} Total={total} width={width} />)}
+      <div className='mx-4'>
+        {filteredData.map(({title, total, width}) => <ProgressBar Title={title} Total={total} width={width} />)}
       </div>
     </div>
   )
