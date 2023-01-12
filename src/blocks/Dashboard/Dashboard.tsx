@@ -15,7 +15,7 @@ const Dashboard = () => {
 
   const logoutHandler = () => {
     localStorage.setItem('login-status', JSON.stringify(false))
-    navigate('/')
+    navigate('/homepage')
   }
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(true);

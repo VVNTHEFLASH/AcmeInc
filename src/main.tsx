@@ -13,7 +13,7 @@ import AllCustomers from './blocks/AllCustomers';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/*",
     element: <App />,
   },
   {
