@@ -10,7 +10,13 @@ interface Props {
     },
     index: number
 }
+
+function readDoller(num: number){
+    return num.toLocaleString("en-US")
+}
+
 const CustomersListCard = ({ data, index }: Props) => {
+
   return (
     <div className='grid grid-cols-header-262 my-6'>
         <div>
@@ -26,7 +32,7 @@ const CustomersListCard = ({ data, index }: Props) => {
         </div>
         <div>
             <div>
-                <p>{data.spends ?? "NA"}</p>
+                <p>${readDoller(data.spends) ?? "$NA"}</p>
                 <p className='text-gray-500'>{data.city ?? "NA"}</p>
             </div>
         </div>

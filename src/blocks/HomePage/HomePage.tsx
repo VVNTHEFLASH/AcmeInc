@@ -20,7 +20,7 @@ const HomePage = () => {
     setTrigger(!trigger)
   }
   const copyPassword = () => {
-    copy("12341234 ")
+    copy("12341234")
     setTrigger(!trigger)
   }
 

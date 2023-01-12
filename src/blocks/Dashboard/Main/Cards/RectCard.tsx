@@ -26,7 +26,7 @@ const RectCard = ({ title, price, priceDiffPercent, diffStatus}: Props) => {
                 <div>
                     <p>${price}</p>
                 </div>
-                <div className={diffStatusCheck()}>{priceDiffPercent}</div>
+                <div className={diffStatusCheck() + " font-poppins text-[18px]"}>+{priceDiffPercent}%{priceDiffPercent > 15 ? <i className='fa-solid fa-arrow-up text-xs relative left-1 bottom-2'></i> : <i className='fa-solid fa-arrow-down text-xs relative left-1 bottom-2'></i>}</div>
             </div>
         </div>
     )

@@ -50,8 +50,8 @@ const TrafficSources = () => {
         <div className='font-bold'>
           <p>Traffic Sources</p>
         </div>
-        <div>
-          <p>Last 7 Days ^</p>
+        <div onClick={() => alert("Feature not implemented yet")}>
+          <p>Last 7 Days <i className='fa-solid fa-chevron-down'></i></p>
         </div>
       </div>
       <div className='mx-4 flex flex-col justify-center'>
