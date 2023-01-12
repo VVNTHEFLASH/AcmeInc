@@ -16,11 +16,11 @@ const HomePage = () => {
   }
 
   const copyUsername = () => {
-    copy("jissetts")
+    copy("user@gmail.com")
     setTrigger(!trigger)
   }
   const copyPassword = () => {
-    copy("ePawWgrnZR8L")
+    copy("12341234 ")
     setTrigger(!trigger)
   }
 
