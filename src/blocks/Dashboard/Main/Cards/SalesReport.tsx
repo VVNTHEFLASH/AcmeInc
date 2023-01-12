@@ -81,11 +81,49 @@ const initialGSD = {
     totalOrders: 0,
     totalCustomers: 0
 }
+
+type MonthData = {
+    date: number,
+    newDate: number,
+    sales: number,
+    _id: string
+}
+
+interface MonthDataProps {
+    Jan: MonthData[],
+    Feb: MonthData[],
+    Mar: MonthData[],
+    Apr: MonthData[],
+    May: MonthData[],
+    Jun: MonthData[],
+    Jul: MonthData[],
+    Aug: MonthData[],
+    Sep: MonthData[],
+    Oct: MonthData[],
+    Nov: MonthData[],
+    Dec: MonthData[],
+}
+const initialMonthlyData: MonthDataProps = {
+    Jan: [],
+    Feb: [],
+    Mar: [],
+    Apr: [],
+    May: [],
+    Jun: [],
+    Jul: [],
+    Aug: [],
+    Sep: [],
+    Oct: [],
+    Nov: [],
+    Dec: [],
+}
 const SalesReport = ({ }: Props) => {
     
     const [SalesReportData, setSalesReportData] = useState([])
 
-    const [gridSalesData, setGSD] = useState(initialGSD)
+    const [gridSalesData, setGSD] = useState(initialGSD);
+
+    const [sortSalesDataByMonths, setSortSalesDataByMonths] = useState(initialMonthlyData)
 
     useEffect(() => {
         fetchSalesReport().then(result => {
@@ -95,6 +133,134 @@ const SalesReport = ({ }: Props) => {
         })
     },[])
 
+    const convertSalesDataToMonthly = () => {
+        const data = SalesReportData.slice(0);
+        // map data to months
+        data.map((item: MonthData, index: number) => {
+            if(index < 31){
+                item.newDate = index + 1;
+                // @ts-ignore
+                setSortSalesDataByMonths({ ...sortSalesDataByMonths, Jan: sortSalesDataByMonths.Jan.push(item) })
+            }
+            else if(index >= 31 && index < 59){
+                // console.log(((index+1) - 31), "feb");
+                item.newDate = (index + 1) -31;
+                // @ts-ignore
+                setSortSalesDataByMonths({ ...sortSalesDataByMonths, Feb: sortSalesDataByMonths.Feb.push(item) })
+            }
+            else if(index >= 59 && index < 90){
+                // console.log(((index+1) - 59), "mar");
+                item.newDate = (index + 1) - 59;
+                // @ts-ignore
+                setSortSalesDataByMonths({ ...sortSalesDataByMonths, Mar: sortSalesDataByMonths.Mar.push(item) })
+            }
+            else if(index >= 90 && index < 120){
+                // console.log((index + 1) - 90, "Apr")
+                item.newDate = (index + 1) - 90;
+                // @ts-ignore
+                setSortSalesDataByMonths({ ...sortSalesDataByMonths, Apr: sortSalesDataByMonths.Apr.push(item) })
+            }
+            else if(index >= 120 && index < 151){
+                // console.log((index + 1) - 120, "May")
+                item.newDate = (index + 1) - 120;
+                // @ts-ignore
+                setSortSalesDataByMonths({ ...sortSalesDataByMonths, May: sortSalesDataByMonths.May.push(item) })
+            }
+            else if(index >= 151 && index < 181){
+                // console.log((index + 1) - 151, "Jun")
+                item.newDate = (index + 1) - 151;
+                // @ts-ignore
+                setSortSalesDataByMonths({ ...sortSalesDataByMonths, Jun: sortSalesDataByMonths.Jun.push(item) })
+            }
+            else if(index >= 181 && index < 212){
+                // console.log((index + 1) - 181, "Jul")
+                item.newDate = (index + 1) - 181;
+                // @ts-ignore
+                setSortSalesDataByMonths({ ...sortSalesDataByMonths, Jul: sortSalesDataByMonths.Jul.push(item) })
+            }
+            else if(index >= 212 && index < 243){
+                // console.log((index + 1) - 212, "Aug")
+                item.newDate = (index + 1) - 212;
+                // @ts-ignore
+                setSortSalesDataByMonths({ ...sortSalesDataByMonths, Aug: sortSalesDataByMonths.Aug.push(item) })
+            }
+            else if(index >= 243 && index < 273){
+                // console.log((index + 1) - 243, "Sep")
+                item.newDate = (index + 1) - 243;
+                // @ts-ignore
+                setSortSalesDataByMonths({ ...sortSalesDataByMonths, Aug: sortSalesDataByMonths.Sep.push(item) })
+            }
+            else if(index >= 273 && index < 304){
+                // console.log((index + 1) - 273, "Oct")
+                item.newDate = (index + 1) - 273;
+                // @ts-ignore
+                setSortSalesDataByMonths({ ...sortSalesDataByMonths, Oct: sortSalesDataByMonths.Oct.push(item) })
+            }
+            else if(index >= 304 && index < 334){
+                // console.log((index + 1) - 304, "Nov")
+                item.newDate = (index + 1) - 304;
+                // @ts-ignore
+                setSortSalesDataByMonths({ ...sortSalesDataByMonths, Nov: sortSalesDataByMonths.Nov.push(item) })
+            }
+            else if(index >= 334 && index < 365){
+                // console.log((index + 1) - 334, "Dec")
+                item.newDate = (index + 1) - 334;
+                // @ts-ignore
+                setSortSalesDataByMonths({ ...sortSalesDataByMonths, Dec: sortSalesDataByMonths.Dec.push(item) })
+            }
+            return item;
+        })
+    }
+
+    const getSortedDataByMonth = (month: string) => {
+        let obj = sortSalesDataByMonths;
+        const result = [];
+
+        for(let key of Object.keys(obj)){
+            // @ts-ignore
+            if(key.match(month)) result.push(obj[key])
+        }
+
+        console.log(result)
+    }
+
+
+
+
+    const dailyDataConvertToMonthlyData = () => {
+        const data: MonthDataProps = sortSalesDataByMonths;
+        const keys = Object.keys(data)
+        const result = [];
+        const Jan = data.Jan.slice(0).map((item: MonthData) => item.sales).reduce((a, b) => b + a,0)
+        const Feb = data.Feb.slice(0).map((item: MonthData) => item.sales).reduce((a, b) => b + a,0)
+        const Mar = data.Mar.slice(0).map((item: MonthData) => item.sales).reduce((a, b) => b + a,0)
+        const Apr = data.Apr.slice(0).map((item: MonthData) => item.sales).reduce((a, b) => b + a,0)
+        const May = data.May.slice(0).map((item: MonthData) => item.sales).reduce((a, b) => b + a,0)
+        const Jun = data.Jun.slice(0).map((item: MonthData) => item.sales).reduce((a, b) => b + a,0)
+        const Jul = data.Jul.slice(0).map((item: MonthData) => item.sales).reduce((a, b) => b + a,0)
+        const Aug = data.Aug.slice(0).map((item: MonthData) => item.sales).reduce((a, b) => b + a,0)
+        const Sep = data.Sep.slice(0).map((item: MonthData) => item.sales).reduce((a, b) => b + a,0)
+        const Oct = data.Oct.slice(0).map((item: MonthData) => item.sales).reduce((a, b) => b + a,0)
+        const Nov = data.Nov.slice(0).map((item: MonthData) => item.sales).reduce((a, b) => b + a,0)
+        const Dec = data.Dec.slice(0).map((item: MonthData) => item.sales).reduce((a, b) => b + a,0)
+        result.push({
+            Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec
+        })
+    }
+
+    // ------------------------------------------------------------------
+    // const [filteredChartData, setFilteredChartData] = useState(initialChartData);
+    const RealLineChartData = {
+        labels: Object.keys(sortSalesDataByMonths),
+        datasets: [
+            {
+                data: []
+            }
+        ]
+    }
+    const RealChartData = {
+        data: RealLineChartData
+    }
     const [filteredChartData, setFilteredChartData] = useState(initialChartData);
 
     const filterChartBy6Months = () => {
@@ -174,7 +340,13 @@ const SalesReport = ({ }: Props) => {
     <>
         <div className='grid grid-cols-3 justify-between font-sans'> 
             <div className='flex justify-start p-4 font-bold text-lg'>
-                <p>Sales Report</p> 
+                <p onClick={() => {
+                    // getTotalSales()
+                    // getTodaySales()
+                    // convertSalesDataToMonthly()
+                    // getSortedDataByMonth('Jan')
+                    // dailyDataConvertToMonthlyData()
+                }}>Sales Report</p> 
             </div>
             <div className='flex justify-evenly p-2'>
                 <SalesReportButton value='12 Months' onClick={filterBy12Months}/>

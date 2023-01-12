@@ -55,7 +55,7 @@ const TrafficSources = () => {
         </div>
       </div>
       <div className='mx-4 flex flex-col justify-center'>
-        {filteredData.map(({title, total, width}) => <ProgressBar Title={title} Total={total} width={width} />)}
+        {filteredData.map(({title, total, width}) => <ProgressBar key={title} Title={title} Total={total} width={width} />)}
       </div>
     </div>
   )

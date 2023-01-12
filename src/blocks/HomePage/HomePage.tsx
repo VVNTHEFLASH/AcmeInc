@@ -38,8 +38,8 @@ const HomePage = () => {
         <div className='flex justify-center items-center border-r-4 border-teal-500'>
           <ul>
             <li>Welcome to Acme Inc</li>
-            <li id='defusername'>Username:- {"jissetts"} <button className='p-1 hover:underline' onClick={copyUsername}>Copy</button> </li>
-            <li id='defpassword'>Password:- {"ePawWgrnZR8L"} <button className='p-1 hover:underline' onClick={copyPassword}>Copy</button> </li>
+            <li id='defusername'>Username:- {"user@gmail.com"} <button className='p-1 hover:underline' onClick={copyUsername}>Copy</button> </li>
+            <li id='defpassword'>Password:- {"12341234"} <button className='p-1 hover:underline' onClick={copyPassword}>Copy</button> </li>
           </ul>
         </div>
         <div className='flex justify-center items-center'>

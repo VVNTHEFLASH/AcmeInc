@@ -1,10 +1,11 @@
 import React, { ChangeEvent, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { BaseURL } from '../../../../secret';
 import BasicSpinner from '../../../components/Loaders/BasicSpinner';
 import CustomAcmeLoader from '../../../components/Loaders/CustomAcmeLoader';
 
 const initialState = {
-    username: '',
+    email: '',
     password: '',
     loginstatus: true
 }
@@ -20,8 +21,8 @@ const LoginForm = () => {
     const [loading, setLoading] = useState(false)
 
     const loginHandler = async () => {
-        if(loginData.username.length < 6){
-            return setError("Username should have minimum of 5 letters")
+        if(loginData.email.length < 6){
+            return setError("email should have minimum of 5 letters")
         }
         else if(loginData.password.length < 6){
             return setError("Password should have minimum of 5 characters")
@@ -33,7 +34,7 @@ const LoginForm = () => {
             headers.append("Content-Type", "application/json");
             
             var body = JSON.stringify({
-              "username": loginData.username,
+              "email": loginData.email,
               "password": loginData.password
             });
             
@@ -42,13 +43,16 @@ const LoginForm = () => {
               headers,
               body,
             };
-            const response = await fetch('https://dummyjson.com/auth/login', requestOptions)
+            const response = await fetch(`${BaseURL}login`, requestOptions)
             const responseJson = await response.json();
-            if(responseJson?.message === 'Invalid credentials') { 
-                console.log(responseJson);
-                return setError(responseJson.message)
+            console.log(responseJson);
+            if(responseJson?.email == "Email not found"){
+                return setError(responseJson.email)
             }
-                else if(!responseJson?.message){
+            else if(responseJson?.password == "Incorrect password"){
+                return setError(responseJson.password)
+            }
+            else {
                 localStorage.setItem('login-status', JSON.stringify(responseJson))
                 localStorage.setItem('token', JSON.stringify(responseJson.token))
                 navigate('dashboard', { state: { data: responseJson } })
@@ -66,8 +70,8 @@ const LoginForm = () => {
         }
     }
 
-    const onChangeUsernameHandler = (e: changeEvent) => {
-        setloginData({ ...loginData, username: e.target.value })
+    const onChangeemailHandler = (e: changeEvent) => {
+        setloginData({ ...loginData, email: e.target.value })
         setError('')
     }
 
@@ -91,17 +95,17 @@ const LoginForm = () => {
         {copiedText && <p>Double click to paste the copied text</p>}
         { !loading && <form action="" method="post">
             <div className='flex flex-col mt-6'>
-                <label>Username</label>
+                <label>email</label>
                 <input 
-                type="text" name="" id="Username"
-                value={loginData.username} 
+                type="text" name="" id="email"
+                value={loginData.email} 
                 className='border-b-2 outline-none border-blue-800 bg-sky-300 pl-2 py-1'
-                onChange={(e) => onChangeUsernameHandler(e)}
+                onChange={(e) => onChangeemailHandler(e)}
                 onDoubleClick={() => {
                     navigator.clipboard.readText()
                     .then((copiedText) => {
                         setCopiedText('')
-                        setloginData({...loginData, username: copiedText})
+                        setloginData({...loginData, email: copiedText})
                     })
                 }}/>
             </div>

@@ -6,6 +6,7 @@ import DashboardHeader from './Header/DashboardHeader';
 import DashboardMain from './Main/DashboardMain';
 import { Sidebar } from "flowbite-react";
 import { BaseURL } from "../../../secret"
+import SignUpModal from './Modal/SignUpModal';
 
 const Dashboard = () => {
   const { state } = useLocation();
@@ -17,8 +18,9 @@ const Dashboard = () => {
     navigate('/')
   }
 
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
 
+  const [showModal, setShowModal] = React.useState(false);
   return (
     <>
     {/* <div className='flex flex-col-reverse h-max'>
@@ -39,8 +41,9 @@ const Dashboard = () => {
     <div id='DashboardContainer' className='h-[80vh]'>
       <DashboardHeader isDrawerOpen={setIsDrawerOpen} />
       <hr />
-      <DashboardMain isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} logoutHandler={logoutHandler} />
+      <DashboardMain isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} logoutHandler={logoutHandler} setShowModal={setShowModal} />
     </div>
+    <SignUpModal setShowModal={setShowModal} showModal={showModal}/>
     </>
   )
 }

@@ -6,6 +6,7 @@ import DrawerTail from './Drawer/DrawerTail';
 interface Props {
     isDrawerOpen: boolean,
     setIsDrawerOpen: Dispatch<React.SetStateAction<boolean>>,
+    setShowModal: Dispatch<React.SetStateAction<boolean>>,
     logoutHandler?: () => void
 }
 
@@ -66,15 +67,17 @@ function alertNotImplented(text: string): void {
 }
 
 
-const DashboardMain = ({ isDrawerOpen, setIsDrawerOpen, logoutHandler}:Props) => {
+const DashboardMain = ({ isDrawerOpen, setIsDrawerOpen, logoutHandler, setShowModal}:Props) => {
 
     const DashboardContent = (
         <div className='flex flex-col justify-between h-[88vh] cursor-pointer bg-slate-100 text-slate-600 font-sans font-bold'>
             <div className='flex flex-col h-96 justify-evenly'>
                 <div className='mt-16'>
-                    <div className='flex justify-around items-center w-[220px] hover:opacity-[0.8] text-white bg-indigo-600 p-3 rounded-lg mt-20'>
+                    <div
+                    onClick={() => setShowModal(true)}
+                    className='flex justify-around items-center w-[230px] hover:opacity-[0.8] text-white bg-indigo-600 p-3 rounded-lg mt-20'>
                         <i className="fa-solid fa-plus"/>
-                        <p className=''>Connnect New Account</p>
+                        <p className=''>Connect New Account</p>
                     </div>
                     <ul>
                         <li className='mt-10'>
@@ -85,7 +88,7 @@ const DashboardMain = ({ isDrawerOpen, setIsDrawerOpen, logoutHandler}:Props) =>
                 <div className='mt-4'>
                     <p className='font-bold uppercase text-slate-300'>Analytics</p>
                     <ul title='Analytics' className='mt-4'>
-                        {SideBarButtonsData.Analytics.map(({iconClass, text}) => <SidebarButtons iconClass={iconClass} text={text} onClick={() => {
+                        {SideBarButtonsData.Analytics.map(({iconClass, text}) => <SidebarButtons key={text} iconClass={iconClass} text={text} onClick={() => {
                             alertNotImplented(text)
                         }} />)}
                     </ul>
@@ -93,7 +96,7 @@ const DashboardMain = ({ isDrawerOpen, setIsDrawerOpen, logoutHandler}:Props) =>
                 <div className='mt-4'>
                     <h4 className='font-bold uppercase text-slate-300'>Support</h4>
                     <ul className='mt-4'>
-                        {SideBarButtonsData.Support.map(({iconClass, text}) => <SidebarButtons iconClass={iconClass} text={text} onClick={() => {
+                        {SideBarButtonsData.Support.map(({iconClass, text}) => <SidebarButtons key={text} iconClass={iconClass} text={text} onClick={() => {
                             alertNotImplented(text)
                         }} />)}
                     </ul>
@@ -101,7 +104,7 @@ const DashboardMain = ({ isDrawerOpen, setIsDrawerOpen, logoutHandler}:Props) =>
                 <div className='mt-4'>
                     <h4 className='font-bold uppercase text-slate-300'>Shop</h4>
                     <ul className='mt-4'>
-                        {SideBarButtonsData.Shop.map(({iconClass, text}) => <SidebarButtons iconClass={iconClass} text={text} onClick={() => {
+                        {SideBarButtonsData.Shop.map(({iconClass, text}) => <SidebarButtons key={text} iconClass={iconClass} text={text} onClick={() => {
                             alertNotImplented(text)
                         }} />)}
                     </ul>
@@ -111,7 +114,7 @@ const DashboardMain = ({ isDrawerOpen, setIsDrawerOpen, logoutHandler}:Props) =>
                 <ul className='mt-4'>
                     {/* <li className="mt-4">Settings</li>
                     <li className="cursor-pointer mt-4" onClick={logoutHandler}>Logout</li> */}
-                    {SideBarButtonsData.Others.map(({iconClass, text}) => <SidebarButtons iconClass={iconClass} text={text} onClick={
+                    {SideBarButtonsData.Others.map(({iconClass, text}) => <SidebarButtons key={text} iconClass={iconClass} text={text} onClick={
                         text === "Logout" ? logoutHandler : () => alertNotImplented(text)
                     } />)}
                 </ul>
@@ -124,7 +127,7 @@ const DashboardMain = ({ isDrawerOpen, setIsDrawerOpen, logoutHandler}:Props) =>
     <div className='bg-slate-100'>
         <DrawerTail isOpen={isDrawerOpen} setIsOpen={setIsDrawerOpen} sideChildren={DashboardContent}>
             <>
-                <DashboardMainContent />
+                <DashboardMainContent isOpen={isDrawerOpen} setIsOpen={setIsDrawerOpen}/>
             </>
         </DrawerTail>
     </div>

@@ -11,13 +11,17 @@ export default function Drawer({isOpen, setIsOpen, children, sideChildren }: Pro
   return (
     <>
     <div className="w-fit h-full bg-slate-100 flex items-start ease-in duration-1000 transition p-4">
-    {!isOpen && (
-    <div className="w-[200px] m-4 mx-8">
-        {/* <div className="flex justify-end">
-            <i className="fa-solid fa-x" onClick={() => setIsOpen(false)} ></i>
-        </div> */}
-        {sideChildren}
-    </div>)}
+    {isOpen && (
+      <>
+        <div className="relative left-[290px] cursor-pointer hover:opacity-70" 
+        onClick={() => setIsOpen(false)}>
+          <i className="fa-solid fa-x"></i>
+        </div>
+        <div className="w-[200px] m-4 mx-8">
+            {sideChildren}
+        </div>
+      </>
+    )}
     {children}
     </div>
     </>

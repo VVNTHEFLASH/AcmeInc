@@ -37,7 +37,7 @@ const DashboardHeader = ({ isDrawerOpen }: Props) => {
                     <i className="fa-regular fa-envelope mx-3"></i>
                     <i className="fa-regular fa-bell mx-3"></i>
                     <div onClick={() => {
-                        // isDrawerOpen(true)
+                        isDrawerOpen(true)
                     }}>
                         <img src={ProfileImage} alt="profileImage" className='h-8 w-8 mr-10' />
                     </div>

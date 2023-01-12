@@ -1,4 +1,4 @@
-import { BaseURL, salesreportEndpoint } from "../../secret"
+import { BaseURL, salesreportEndpoint, CTEndpoint } from "../../secret"
 
 const fetchSalesReport = async () => {
     const request = await fetch(`${BaseURL}${salesreportEndpoint}`)
@@ -6,4 +6,10 @@ const fetchSalesReport = async () => {
     return response;
 }
 
-export { fetchSalesReport }
+const fetchCT = async () => {
+    const request = await fetch(`${BaseURL}${CTEndpoint}`)
+    const response = await request.json()
+    return response; 
+}
+
+export { fetchSalesReport, fetchCT, BaseURL }
